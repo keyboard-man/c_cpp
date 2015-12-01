@@ -9,21 +9,25 @@
 #define COUNTED_PTR_H_
 #include <cstring>
 
-template<class T> class counted_ptr
+template<class T>
+class counted_ptr
 {
 public:
 	counted_ptr<T>(T* real);
 	~counted_ptr();
-	counted_ptr<T>(counted_ptr<T>& source_ptr);
-	counted_ptr<T>& operator= (counted_ptr<T> source_ptr);
-	T* get(void);
-	T& operator*();
-	T* operator->();
-	int count();
-	bool operator ==(counted_ptr<T>& source_ptr);
+	counted_ptr<T>(const counted_ptr<T>& source_ptr);
+	counted_ptr<T>& operator= (const counted_ptr<T>& source_ptr);
+	T* get(void) const;
+	T& operator*() const;
+	T* operator->() const;
+	int count() const;
+	bool operator ==(const counted_ptr<T>& source_ptr) const;
 
 private:
 	T* real_ptr_;
 	unsigned int* count_;
 };
+
+#include "counted_ptr.tcc"
+
 #endif
