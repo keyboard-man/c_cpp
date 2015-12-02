@@ -24,5 +24,6 @@ int main()
 	std::cout << "value:" << *ptr << std::endl 
 		<< "count:" << ptr.count() << std::endl << std::endl;
 
+	thr.reset(new int);
 	return 0;
 }

@@ -8,7 +8,7 @@ all:$(EXE)
 
 counted_ptr:$(OBJ)
 	g++ $(LIB) $(LIB_PATH) $(OBJ) -o counted_ptr
-counted_ptr_test.o:counted_ptr_test.cpp
+counted_ptr_test.o:counted_ptr_test.cpp counted_ptr.h counted_ptr.tcc
 	g++ $(INCLDUE) $(CXXFLAG) -c counted_ptr_test.cpp
 
 clean:

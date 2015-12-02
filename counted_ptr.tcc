@@ -97,3 +97,22 @@ bool counted_ptr<T>::operator==(const counted_ptr<T>& source_ptr) const
 		return false;
 }
 
+template<class T>
+T& counted_ptr<T>::reset(T* real)
+{
+	(*count_)--;
+	if(*count_ == 0)
+	{
+		std::cout << "free value point @" << real_ptr_ << std::endl;
+		delete this->real_ptr_;
+		std::cout << "free count point @" << count_ << std::endl;
+		delete this->count_;
+	}
+
+	real_ptr_ = real;
+	count_ = new unsigned int;
+	memset(real_ptr_,0,sizeof(T));
+	*count_ = 1;
+	std::cout << "value point to @" << real_ptr_ << ":" << *real_ptr_ << std::endl;
+	std::cout << "count point to @" << count_ << ":" << *count_ << std::endl;
+}
