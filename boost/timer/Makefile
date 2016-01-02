@@ -1,15 +1,18 @@
 CC=gcc
 XX=g++
 CFLAGS=-Wall -D_REENTRANT -g -std=c++11
+CXXFLAGS=$(CFLAGS)
 INCLUDE=-I./
 LIBS=-lpthread -lrt
-OBJS=timer.o progress_timer.o new_progress_timer.o
-TEST=timer progress_timer new_progress_timer
+OBJS=$(patsubst %.c,%.o,$(wildcard *.c)) $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+TEST=$(patsubst %.c,%,$(wildcard *.c)) $(patsubst %.cpp,%,$(wildcard *.cpp)) 
+
+.PHONY:clean echo
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 %.o: %.cpp
-	$(XX) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	$(XX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 all:$(TEST)
 
@@ -18,3 +21,7 @@ $(TEST):$(OBJS)
 
 clean:
 	rm -f *.o $(TEST)
+
+echo:
+	echo $(TEST)
+	echo $(OBJS)
