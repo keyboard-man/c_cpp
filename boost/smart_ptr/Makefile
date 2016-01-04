@@ -3,7 +3,7 @@ XX=g++
 CFLAGS=-Wall -D_REENTRANT -g -std=c++11
 CXXFLAGS=$(CFLAGS)
 INCLUDE=-I./
-LIBS=-lpthread -lrt -lboost_date_time
+LIBS=-lpthread -lrt
 OBJS=$(patsubst %.c,%.o,$(wildcard *.c)) $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 TEST=$(patsubst %.c,%,$(wildcard *.c)) $(patsubst %.cpp,%,$(wildcard *.cpp)) 
 
